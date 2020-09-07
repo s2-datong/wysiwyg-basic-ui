@@ -52,6 +52,11 @@ class App extends React.Component{
   }
 
   updateElement(key, value){
+
+    if(key === 'body'){
+      this.setState({container: {bgcolor: value}});
+      return;
+    }
     
     const element = this.getSelected();
     if(element === undefined) return;

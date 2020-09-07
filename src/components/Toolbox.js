@@ -4,18 +4,18 @@ import ImageIcon from "../assets/img/photo.svg";
 
 const Toolbox = ({addImage, addParagraph}) => {
     const style = {
-        width: '50px',
-        height: '50px'
+        width: '20px',
+        height: '20px'
     };
     return (
         <div className="toolbox">
             <div className="add-text" onClick={addParagraph} >
                 <img src={ParagraphIcon} style={style} />
-                <p>Add Paragraph</p>
+                <div>Add Paragraph</div>
             </div>
             <div className="add-image" onClick={addImage} >
                 <img src={ImageIcon} style={style} />
-                <p>Add Image</p>
+                <div>Add Image</div>
             </div>
         </div>
     );

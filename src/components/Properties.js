@@ -35,7 +35,7 @@ class Properties extends React.Component{
         }
         if(this.state.selectedItemId === 'body'){
             return <div className="properties">
-                    <input type="text" placeholder="Background-Color" />
+                    <input type="text" onChange={e => this.doChange('bgcolor', e.target.value) } />
                 </div>;
         }
         if(this.state.selectedItem !== null){

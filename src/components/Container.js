@@ -16,8 +16,8 @@ class Container extends React.Component{
         };
     }
 
-    componentWillReceiveProps({elements}){
-        this.setState({elements});
+    componentWillReceiveProps({elements, bgcolor}){
+        this.setState({elements, bgcolor});
     }
 
     render(){
