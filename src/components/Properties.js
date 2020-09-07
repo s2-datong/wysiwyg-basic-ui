@@ -30,11 +30,18 @@ class Properties extends React.Component{
     }
 
     render(){
+        const h4style = {
+            textAlign: 'center',
+            padding: '5px'
+        };
         if(this.state.selectedItemId === ''){
-            return <div className="properties"></div>;
+            return <div className="properties">
+                <h4 style={h4style}>Properties</h4>
+            </div>;
         }
         if(this.state.selectedItemId === 'body'){
             return <div className="properties">
+                    <h4 style={h4style}>Properties</h4>
                     <input type="text" onChange={e => this.doChange('bgcolor', e.target.value) } />
                 </div>;
         }
@@ -43,6 +50,7 @@ class Properties extends React.Component{
             if(type === 'text'){
                 // <input type="text" value={this.state.selectedItem.font ?? "auto"} onBlur={e => updateElement('font', e.target.value)} onChange={e => this.doChange('font', e.target.value) }/>
                 return <div className="properties">
+                        <h4 style={h4style}>Properties</h4>
                         <label>Text</label>
                         <input type="text" value={this.state.selectedItem.text} onBlur={e => updateElement('text', e.target.value)} onChange={e => this.doChange('text', e.target.value) } />
                         <label>Font</label>
@@ -64,6 +72,7 @@ class Properties extends React.Component{
             }
             if(type === 'image'){
                 return  <div className="properties">
+                        <h4 style={h4style}>Properties</h4>
                         <label>Image URL</label>
                         <input type="text" value={this.state.selectedItem.src ?? "auto"} onBlur={e => updateElement('src', e.target.value)} onChange={e => this.doChange('src', e.target.value) } />
                         <label>Radius</label>

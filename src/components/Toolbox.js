@@ -7,8 +7,12 @@ const Toolbox = ({addImage, addParagraph}) => {
         width: '20px',
         height: '20px'
     };
+    const h4style = {
+        textAlign: 'center'
+    };
     return (
         <div className="toolbox">
+            <h4 style={h4style}>Toolbox</h4>
             <div className="add-text" onClick={addParagraph} >
                 <img src={ParagraphIcon} style={style} />
                 <div>Add Paragraph</div>
