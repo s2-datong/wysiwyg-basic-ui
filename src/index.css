@@ -48,3 +48,9 @@ body {
 label, select {
   display: block;
 }
+
+.add-text, .add-image {
+  position: relative;
+  margin: auto;
+  width: 50%;
+}

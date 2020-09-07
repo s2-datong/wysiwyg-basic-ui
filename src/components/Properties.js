@@ -1,11 +1,13 @@
 import React from "react";
 import FontPicker from "./dropdowns/FontPicker";
 let updateElement;
+let deleteElement;
 
 class Properties extends React.Component{
     constructor(props){
         super(props);
         updateElement = props.updateElement;
+        deleteElement = props.deleteElement;
 
         this.state = {
             selectedItemId: props.selected ?? '',
@@ -56,6 +58,8 @@ class Properties extends React.Component{
                         <input type="text" value={this.state.selectedItem.top ?? "auto"} onBlur={e => updateElement('top', e.target.value)} onChange={e => this.doChange('top', e.target.value) }/>
                         <label>Left</label>
                         <input type="text" value={this.state.selectedItem.left ?? "auto"} onBlur={e => updateElement('left', e.target.value)} onChange={e => this.doChange('left', e.target.value) }/>
+
+                        <button onClick={deleteElement}>Delete Element</button>
                     </div>;
             }
             if(type === 'image'){
@@ -72,6 +76,8 @@ class Properties extends React.Component{
                         <input type="text" value={this.state.selectedItem.top ?? "auto"} onBlur={e => updateElement('top', e.target.value)} onChange={e => this.doChange('top', e.target.value) } />
                         <label>Left</label>
                         <input type="text" value={this.state.selectedItem.left ?? "auto"} onBlur={e => updateElement('left', e.target.value)} onChange={e => this.doChange('left', e.target.value) } />
+
+                        <button onClick={deleteElement}>Delete Element</button>
                     </div>;
             }
         }

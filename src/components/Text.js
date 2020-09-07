@@ -13,11 +13,12 @@ class Text extends React.Component{
             bgcolor: props.bgcolor ?? 'auto',
             size: props.size ?? 'medium',
             top: props.top ?? 'auto',
-            left: props.left ?? 'auto'
+            left: props.left ?? 'auto',
+            selected: props.selected ?? false
         };
     }
 
-    componentWillReceiveProps({value, font, color, bgcolor, size, top, left}){
+    componentWillReceiveProps({value, font, color, bgcolor, size, top, left, selected}){
         this.setState({
             value: value ?? '',
             font: font ?? 'sans-serif',
@@ -25,7 +26,8 @@ class Text extends React.Component{
             bgcolor: bgcolor ?? 'auto',
             size: size ?? 'medium',
             top: top ?? 'auto',
-            left: left ?? 'auto'
+            left: left ?? 'auto',
+            selected: selected ?? false
         })
     }
 
@@ -39,6 +41,9 @@ class Text extends React.Component{
             'top': this.state.top,
             'left': this.state.left
         };
+        if(this.state.selected === true){
+            style.border = "2px dotted #3279a8";
+        }
         return <p style={style} onClick={e => selectElement(this.state.id)}>{this.state.value} </p>
         
     }

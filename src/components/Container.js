@@ -3,18 +3,30 @@ import Text from "./Text";
 import Image from "./Image";
 
 let selectElement;
+let resetProperties;
 
 class Container extends React.Component{
     constructor(props){
         super(props);
         selectElement = props.selectElement;
+        resetProperties = props.reset;
+
         this.state = {
             elements: props.elements
         };
     }
 
+    componentWillReceiveProps({elements}){
+        this.setState({elements});
+    }
+
     render(){
-        return <div className="container">
+        return <div className="container" onClick={e => {
+            
+            if(e.target.getAttribute('class') === 'container'){
+                resetProperties();
+            }
+        }}>
         {this.state.elements.map(element => {
                 if(element.type === 'text'){
                     return <Text 
@@ -27,6 +39,7 @@ class Container extends React.Component{
                                 size={element.size}
                                 top={element.top}
                                 left={element.left}
+                                selected={element.selected}
                                 selectElement={selectElement}
                             />
                 }
@@ -41,6 +54,7 @@ class Container extends React.Component{
                         height={element.height}
                         top={element.top}
                         left={element.left}
+                        selected={element.selected}
                         selectElement={selectElement} />
                 }
 

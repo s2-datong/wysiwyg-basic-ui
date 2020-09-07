@@ -11,7 +11,7 @@ class App extends React.Component{
       container: {
         elements: [
           {id:1, type: 'text', text: "Hello World", selected: false},
-          {id:2, type: "image", src: "https://picsum.photos/id/237/200/300", selected: false}
+          {id:2, type: "image", src: "https://via.placeholder.com/150", selected: false}
         ]
       },
       properties:{
@@ -43,6 +43,14 @@ class App extends React.Component{
     return false;
   }
 
+  deleteSelected(){
+    const element = this.getSelected();
+    if(element === undefined) return;
+
+    const elements = this.state.container.elements.filter(el => el.id !== element.id);
+    this.setState({container: {elements}, properties: {selected: '', element: null}});
+  }
+
   updateElement(key, value){
     
     const element = this.getSelected();
@@ -56,7 +64,6 @@ class App extends React.Component{
     }
 
     this.setState({container: {elements}});
-    console.log(elements[index]);
   }
 
   getSelected(){
@@ -64,17 +71,44 @@ class App extends React.Component{
     return element;
   }
 
+  resetProperties(){
+    const elements = this.state.container.elements.map((e) => {e.selected = false; return e; });
+    this.setState({container: {elements}, properties: {selected: '', element: null}, currentlySelectedElement: null});
+  }
+
+  addParagraph(){
+    const elements = this.state.container.elements.map((e) => {e.selected = false; return e; });
+    const element = {id: this.state.container.elements.length, type: 'text', text: "New Paragraph", selected: true};
+    elements.push(element);
+    this.setState({
+      container: {elements}, 
+      properties: {selected: element.id, element}, currentlySelectedElement: element.id
+    });
+  }
+
+  addImage(){
+    const elements = this.state.container.elements.map((e) => {e.selected = false; return e; });
+    const element = {id: this.state.container.elements.length, type: "image", src: "https://via.placeholder.com/150", selected: true};
+    elements.push(element);
+    this.setState({
+      container: {elements}, 
+      properties: {selected: element.id, element}, currentlySelectedElement: element.id
+    });
+  }
+
   render() {
     return (
       <div className="PrintingApp">
-        <Toolbox />
+        <Toolbox addParagraph={this.addParagraph.bind(this)} addImage={this.addImage.bind(this)} />
         <Container 
           elements={ this.state.container.elements} 
           selectElement={this.selectElement.bind(this) }
           getSelected={this.getSelected.bind(this)} 
+          reset={this.resetProperties.bind(this)}
         />
         <Properties {...this.state.properties}  
           updateElement={this.updateElement.bind(this) }
+          deleteElement={this.deleteSelected.bind(this)}
         />
       </div>
     );

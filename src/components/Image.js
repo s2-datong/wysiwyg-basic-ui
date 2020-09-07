@@ -12,18 +12,20 @@ class Image extends React.Component{
             width: props.width ?? 'auto',
             height: props.height ?? 'auto',
             top: props.top ?? 'auto',
-            left: props.left ?? 'auto'
+            left: props.left ?? 'auto',
+            selected: props.selected ?? false
         };
     }
 
-    componentWillReceiveProps({src, radius, width, height, top, left}){
+    componentWillReceiveProps({src, radius, width, height, top, left, selected}){
         this.setState({
             src: src ?? '',
             radius: radius ?? '5px',
             width: width ?? 'auto',
             height: height ?? 'auto',
             top: top ?? 'auto',
-            left: left ?? 'auto'
+            left: left ?? 'auto',
+            selected: selected ?? false
         })
     }
 
@@ -36,6 +38,9 @@ class Image extends React.Component{
             'top': this.state.top,
             'left': this.state.left
         };
+        if(this.state.selected === true){
+            style.border = "2px dotted #3279a8";
+        }
         return (
             <img src={this.state.src} style={style} onClick={e => selectElement(this.state.id) } />
         );
